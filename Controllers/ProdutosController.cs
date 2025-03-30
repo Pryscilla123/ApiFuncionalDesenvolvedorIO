@@ -3,9 +3,11 @@ using ApiFuncional.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiFuncional.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/produtos")]
     public class ProdutosController : ControllerBase
@@ -17,6 +19,7 @@ namespace ApiFuncional.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
