@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste CORS</title>
+    <!-- jQuery importado corretamente -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="fetchData">Buscar Produto</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#fetchData").click(function () {
+                $.ajax({
+                    url: 'https://localhost:7093/api/produtos/1',
+                    type: 'GET',
+                    success: function (response) {
+                        console.log("Resposta recebida:", response);
+                        $("#result").html(`<p>Produto: ${response.nome}</p>
+                                           <p>Preço: ${response.preco}</p>
+                                           <p>Quantidade em Estoque: ${response.quantidadeEstoque}</p>
+                                           <p>Descrição: ${response.descricao}</p>`);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Erro na requisição AJAX:");
+                        console.log("Status:", status);
+                        console.log("Erro:", error);
+                        console.log("Resposta completa:", xhr);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+</html>

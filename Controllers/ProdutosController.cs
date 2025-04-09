@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace ApiFuncional.Controllers
 {
@@ -31,6 +32,8 @@ namespace ApiFuncional.Controllers
             return await _context.Produtos.ToListAsync();
         }
 
+        [AllowAnonymous]
+        //[EnableCors("Production")] como implementar direto na rota
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
